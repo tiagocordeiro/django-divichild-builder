@@ -1,9 +1,13 @@
 import os
+import shutil
+from datetime import datetime
 from io import BytesIO
 from zipfile import ZipFile
 
+from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
 
 from divichildbuilder.settings import BASE_DIR
 from .forms import ChildForm
@@ -41,12 +45,21 @@ def download_child(request):
     divi_child_name = context['child_name']
     divi_child_name_file = divi_child_name + '.zip'
 
-    # TODO Fazer reenderização do conteúdo dos arquivos antes de compactar.
+    fs = FileSystemStorage('/tmp')
+    dirname = f'{divi_child_name}-{datetime.now().strftime("%Y.%m.%d.%H.%M.%S")}'
+    os.mkdir(os.path.join('/tmp', dirname))
+
     # crawling through directory and subdirectories
     for root, directories, files in os.walk(template_dir):
         for filename in files:
+            # TODO: Checar se o arquivo é texto ou imagem. Se for imagem, copia. 
+            # rendering files and save in /tmp
+            file_string = render_to_string(root + '/' + filename, context)
+            with fs.open(f'/tmp/{dirname}/{filename}', 'w') as rendered_file:
+                rendered_file.write(file_string)
+
             # join the two strings in order to form the full filepath.
-            filepath = os.path.join(root, filename)
+            filepath = os.path.join(f'/tmp/{dirname}', filename)
             file_paths.append(filepath)
 
     # writing files to a zipfile
@@ -56,6 +69,7 @@ def download_child(request):
             zipped.write(file, divi_child_name + '/' + os.path.basename(file))
 
     zipped.close()
+    shutil.rmtree(f'/tmp/{dirname}')
 
     response = HttpResponse(byte.getvalue(), content_type="application/x-zip-compressed")
     response['Content-Disposition'] = f'attachment; filename={divi_child_name_file}'
