@@ -52,11 +52,14 @@ def download_child(request):
     # crawling through directory and subdirectories
     for root, directories, files in os.walk(template_dir):
         for filename in files:
-            # TODO: Checar se o arquivo é texto ou imagem. Se for imagem, copia. 
-            # rendering files and save in /tmp
-            file_string = render_to_string(root + '/' + filename, context)
-            with fs.open(f'/tmp/{dirname}/{filename}', 'w') as rendered_file:
-                rendered_file.write(file_string)
+            # Checks if file is image
+            if filename.endswith(".jpg") or filename.endswith(".png"):
+                shutil.copy2(f'{template_dir}/{filename}', f'/tmp/{dirname}')
+            else:
+                # rendering files and save in /tmp
+                file_string = render_to_string(root + '/' + filename, context)
+                with fs.open(f'/tmp/{dirname}/{filename}', 'w') as rendered_file:
+                    rendered_file.write(file_string)
 
             # join the two strings in order to form the full filepath.
             filepath = os.path.join(f'/tmp/{dirname}', filename)
