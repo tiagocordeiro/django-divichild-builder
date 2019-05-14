@@ -26,3 +26,28 @@ Template: Divi
   -webkit-filter: grayscale(0%);
   -webkit-filter: contrast(1);
 }
+
+/* Fix mobile nav menu (Sticky) */
+@media only screen and (max-width: 980px) {
+    .et_fixed_nav #main-header, .et_fixed_nav #top-header, .et_non_fixed_nav.et_transparent_nav #main-header, .et_non_fixed_nav.et_transparent_nav #top-header {
+        position: fixed;
+    }
+    .et_menu_container {
+        width: 100% !important;
+    }
+    .et_header_style_left .logo_container {
+        padding-left: 25px;
+    }
+    .mobile_menu_bar:before {
+        padding-right: 25px;
+    }
+}
+
+.et_mobile_menu {
+    overflow: scroll !important;
+    max-height: 80vh;
+}
+
+.mobile_nav.opened .mobile_menu_bar:before {
+ content: '\4d';
+}
