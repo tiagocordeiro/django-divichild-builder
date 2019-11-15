@@ -4,7 +4,7 @@ pytz==2019.2
 sqlparse==0.3.0
 
 # Decouple
-python-decouple==3.1
+python-decouple==3.3
 
 # Heroku
 django-heroku==0.3.1
