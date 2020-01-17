@@ -3,6 +3,7 @@ DEBUG=True
 ALLOWED_HOSTS=localhost, 127.0.0.1
 SENTRY_DSN=
 DATABASE_URL=postgres://postgres@localhost/travis_ci_db
+CODECOV_TOKEN=
 
 # Email Configuration
 EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
