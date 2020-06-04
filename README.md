@@ -32,3 +32,5 @@ python contrib/env_gen.py
 python manage.py migrate
 python manage.py runserver
 ```
+
+Thanx to https://pyup.io/
