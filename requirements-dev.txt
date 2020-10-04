@@ -1,5 +1,5 @@
 pycodestyle==2.6.0
-flake8==3.8.2
+flake8==3.8.4
 coverage==5.1
 
 -r requirements.txt
