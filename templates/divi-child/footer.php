@@ -34,7 +34,7 @@ if ( ! is_page_template( 'page-template-blank.php' ) ) : ?>
 
 				<ul class="et-social-icons" style="float: right;">
 					<li class="et-social-gorila">
-						<a href="https://www.mulhergorila.com" target="_blank" title="Desenvolvido por Mulher Gorila"><img src="https://www.mulhergorila.com/webportfolio/wp-content/uploads/2014/02/mulhergorila_web.png" alt="Desenvolvido por Mulher Gorila" width="30" height="30"></a>
+						<a href="https://www.mulhergorila.com" target="_blank" rel="noreferrer" title="Desenvolvido por Mulher Gorila"><img src="https://www.mulhergorila.com/webportfolio/wp-content/uploads/2014/02/mulhergorila_web.png" alt="Desenvolvido por Mulher Gorila" width="30" height="30"></a>
 					</li>
 				</ul>
 
