@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-import django_heroku
-
 
 from dj_database_url import parse as dburl
 from decouple import config, Csv
@@ -133,6 +131,3 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
 COLLECTFAST_ENABLED = False
-
-# Configure Django App for Heroku.
-django_heroku.settings(locals())
