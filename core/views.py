@@ -22,7 +22,6 @@ def home(request):
             request.session['child_name'] = form.cleaned_data['child_name']
             request.session['customer_name'] = form.cleaned_data['customer_name']
             request.session['customer_site'] = form.cleaned_data['customer_site']
-            redirect('render_child')
 
     else:
         form = ChildForm()
